@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Lưu Trữ Ảnh</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background: #444;
+            padding: 10px 0;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+        }
+        nav a:hover {
+            background: #555;
+        }
+        section {
+            padding: 20px;
+            margin: 20px 0;
+            background: #fff;
+        }
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+        }
+        .upload-form {
+            margin: 20px 0;
+            padding: 20px;
+            background: #e2e2e2;
+        }
+        .upload-form input[type="file"] {
+            padding: 10px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .upload-form input[type="submit"] {
+            padding: 10px 20px;
+            border: none;
+            background: #333;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .gallery img {
+            width: 200px;
+            height: 200px;
+            margin: 10px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Trang Lưu Trữ Ảnh</h1>
+        </div>
+    </header>
+
+    <nav>
+        <a href="#">Trang Chủ</a>
+        <a href="#">Tải Ảnh Lên</a>
+        <a href="#">Thư Viện Ảnh</a>
+        <a href="#">Liên Hệ</a>
+    </nav>
+
+    <section>
+        <div class="container">
+            <h2>Tải Ảnh Lên</h2>
+            <form class="upload-form" id="uploadForm">
+                <input type="file" id="fileInput">
+                <input type="submit" value="Tải Lên">
+            </form>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2>Thư Viện Ảnh</h2>
+            <div class="gallery" id="gallery">
+                <!-- Các ảnh sẽ được hiển thị ở đây -->
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Trang Lưu Trữ Ảnh &copy; 2024</p>
+    </footer>
+
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            var fileInput = document.getElementById('fileInput');
+            var file = fileInput.files[0];
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                var img = document.createElement('img');
+                img.src = e.target.result;
+                document.getElementById('gallery').appendChild(img);
+            }
+            reader.readAsDataURL(file);
+        });
+    </script>
+</body>
+</html>
